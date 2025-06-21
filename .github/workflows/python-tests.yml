@@ -1,0 +1,19 @@
+name: Python CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4           # pulls your repo
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"            # or 3.11 if you prefer
+      - name: Install dependencies
+        run: pip install pytest
+      - name: Run tests
+        run: pytest -q
